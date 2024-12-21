@@ -45,7 +45,7 @@ export default function ProgressBar({ target, segments = [], totalPotential }: P
   }
 
   return (
-    <div className="w-full max-w-3xl">
+    <div className="w-full mt-5">
       <div className="">
         {/* Progress Bar Container */}
         <div className="relative h-2 w-full" ref={barRef}>
@@ -78,12 +78,12 @@ export default function ProgressBar({ target, segments = [], totalPotential }: P
           </div>
 
           {/* Percentage Label */}
-          <div 
+          {/* <div 
             className="absolute -top-6 text-xs font-medium whitespace-nowrap"
             style={{ left: '100%', transform: 'translateX(-100%)' }}
           >
             68% of target achieved
-          </div>
+          </div> */}
         </div>
 
         {/* Segments Legend */}

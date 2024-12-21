@@ -2,7 +2,7 @@ import { Lightbulb, Plus, Settings, HelpCircle, Share2, User, Grip } from 'lucid
 
 export default function Header() {
   return (
-    <header className="h-12 bg-[#0f1b38] text-white px-4 flex items-center justify-between">
+    <header className="h-12 bg-[#0f1b38] text-gray-300 px-4 flex items-center justify-between">
       <div className="flex items-center space-x-2">
         <button className="p-1 hover:bg-white/10 rounded">
           <Grip className="w-5 h-5" />
@@ -25,11 +25,11 @@ export default function Header() {
           <HelpCircle className="w-5 h-5" />
         </button>
         <button className="p-1 hover:bg-white/10 rounded">
-          <Share2 className="w-5 h-5" />
-        </button>
-        <button className="p-1 hover:bg-white/10 rounded">
           <User className="w-5 h-5" />
         </button>
+        <div className='size-7 rounded-full'>
+          <img src="/images/pic1.jpg" alt="imageprofile" className='size-7 rounded-full' />
+        </div>
       </div>
     </header>
   )

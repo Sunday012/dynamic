@@ -108,7 +108,7 @@ export default function InsightsPanel() {
     { label: "Committed", value: 8000000, color: "bg-blue-500" },
     { label: "Best case 97%", value: 4000000, color: "bg-purple-400" },
     { label: "Qualified 57%", value: 3500000, color: "bg-orange-300" },
-    { label: "Leads 17%", value: 200000, color: "bg-blue-200" },
+    { label: "Leads 17%", value: 200000, color: "bg-gray-200" },
   ];
 
   // Adjust segment values to total 68% of target
@@ -192,7 +192,7 @@ export default function InsightsPanel() {
               </div>
 
               {/* Activities Section */}
-              <div className="px-2 md:px-6 w-full md:w-[40%]">
+              <div className="px-2 md:px-6 w-full xl:w-[40%]">
                 <p className="text-gray-600 px-2 md:px-6">
                   Other key activities
                 </p>

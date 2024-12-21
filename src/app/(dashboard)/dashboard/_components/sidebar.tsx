@@ -178,7 +178,7 @@ export default function Sidebar() {
 
           <SectionTitle title="Agent Skill" />
           <button
-            className="flex items-center px-4 py-2 w-full text-sm group hover:bg-white"
+            className="flex items-center px-4 py-3 w-full text-sm group bg-gradient-to-r from-blue-300 to-purple-300 text-white hover:bg-white"
             onClick={() => setIsAgentSkillModalOpen(true)}
           >
             <UserCheck className="w-4 h-4 mr-3" />
