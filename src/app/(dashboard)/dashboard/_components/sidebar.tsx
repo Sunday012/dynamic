@@ -100,7 +100,7 @@ export default function Sidebar() {
   const NavItem = ({ item, indent = false }: InsightsPanelData) => (
     <Link
       href={item.path}
-      className={`flex items-center px-4 py-2 text-sm group ${
+      className={`flex items-center px-4 py-2 text-sm truncate group ${
         item.isActive ? "bg-white" : "hover:bg-white"
       } ${indent ? "pl-8" : ""}`}
     >
