@@ -75,14 +75,14 @@ export default function LeadModal({ isOpen, onClose, lead }: LeadModalProps) {
           </div>
 
           <div className="bg-gradient-to-br from-white via-white to-blue-50 shadow-sm p-4 rounded-lg">
-            <div className="bg-gradient-to-r from-blue-50 to-purple-50  flex items-center rounded-lg p-4 mb-6">
+            <div className="bg-gradient-to-r from-blue-50 to-purple-50 flex flex-col lg:flex-row items-center rounded-lg p-4 mb-6">
               <div className="flex items-center gap-2 text-blue-600 ">
                 <img src="/images/bard.png" alt="bard" className="size-5" />
                 <p className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-violet-500">
                   {lead?.suggestion}
                 </p>
               </div>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-3 mt-5 lg:mt-0">
                 <button className="text-sm flex items-center gap-2 bg-white px-4 py-2 text-gray-600 hover:text-gray-900">
                   <Edit2 className="w-4 h-4" />
                   <span className="">Edit</span>
@@ -121,8 +121,8 @@ export default function LeadModal({ isOpen, onClose, lead }: LeadModalProps) {
                     in-store coffee shops.
                   </li>
                 </ul>
-                <div className="flex gap-4">
-                  <div className="p-2 bg-white border w-[204px] rounded-2xl">
+                <div className="flex flex-col lg:flex-row gap-4">
+                  <div className="p-2 bg-white border w-full lg:w-[204px] rounded-2xl">
                     <div className="flex items-center gap-2">
                       <img
                         src="/images/mac-tick.png"
@@ -137,7 +137,7 @@ export default function LeadModal({ isOpen, onClose, lead }: LeadModalProps) {
                       </div>
                     </div>
                   </div>
-                  <div className="p-2 bg-white border w-[204px] rounded-2xl">
+                  <div className="p-2 bg-white border w-full lg:w-[204px] rounded-2xl">
                     <div className="flex items-center gap-2 mb-1">
                       <div className="size-14 flex items-center justify-center rounded-full bg-yellow-100">
                         🎖
@@ -152,7 +152,7 @@ export default function LeadModal({ isOpen, onClose, lead }: LeadModalProps) {
                       </div>
                     </div>
                   </div>
-                  <div className="p-2 bg-white border w-[204px] rounded-2xl">
+                  <div className="p-2 bg-white border w-full lg:w-[204px] rounded-2xl">
                     <div className="flex items-center gap-2">
                       <img
                         src="/images/round-pie.svg"

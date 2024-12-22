@@ -19,7 +19,7 @@ interface Lead {
     return (
       <div 
         onClick={() => onClick(lead)}
-        className="min-w-[400px] shadow-md rounded-2xl p-4 space-y-4 
+        className="min-w-[500px] shadow-md rounded-2xl p-4 space-y-4 
                    transition-all duration-200 hover:shadow-lg cursor-pointer border border-transparent 
                    hover:border-blue-100"
       >
@@ -87,7 +87,7 @@ interface Lead {
     return (
       <div 
         // onClick={() => onClick(activity)}
-        className="w-full shadow-md rounded-2xl p-4 space-y-4 h-full 
+        className="w-full shadow-md rounded-2xl p-2 space-y-4 h-full 
                    transition-all duration-200 hover:shadow-lg cursor-pointer border border-transparent 
                    hover:border-blue-100"
       >
@@ -107,7 +107,7 @@ interface Lead {
         <div className="bg-slate-100 rounded-lg p-3">
           <div className="flex gap-2">
           {activity.icon}
-          <span className="font-medium text-gray-600">{activity.action}</span>
+          <span className="text-sm text-gray-600">{activity.action}</span>
           </div>
         </div>
         
@@ -126,7 +126,7 @@ interface Lead {
         )}
         
         {activity.additionalInfo && (
-          <p className="text-sm text-gray-500">{activity.additionalInfo}</p>
+          <p className="text-xs text-gray-500">{activity.additionalInfo}</p>
         )}
       </div>
     );
