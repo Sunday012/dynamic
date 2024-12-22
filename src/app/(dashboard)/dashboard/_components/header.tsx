@@ -1,4 +1,5 @@
 import { Lightbulb, Plus, Settings, HelpCircle, Share2, User, Grip } from 'lucide-react'
+import ProfileDropdown from './profile-dropdown'
 
 export default function Header() {
   return (
@@ -27,9 +28,7 @@ export default function Header() {
         <button className="p-1 hover:bg-white/10 rounded">
           <User className="w-5 h-5" />
         </button>
-        <div className='size-7 rounded-full'>
-          <img src="/images/pic1.jpg" alt="imageprofile" className='size-7 rounded-full' />
-        </div>
+        <ProfileDropdown />
       </div>
     </header>
   )
