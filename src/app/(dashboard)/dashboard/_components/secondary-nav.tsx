@@ -8,7 +8,7 @@ export default function SecondaryNav() {
   const [isLeadsOpen, setIsLeadsOpen] = useState(false)
 
   return (
-    <div className="lg:flex flex-wrap hidden items-center justify-between px-4 py-2 border-b bg-white">
+    <div className="flex lg:flex-wrap items-center justify-between px-4 py-2 border-b bg-white">
       <div className="flex items-center space-x-2">
         <button
           onClick={() => setIsLeadsOpen(!isLeadsOpen)}
@@ -21,33 +21,33 @@ export default function SecondaryNav() {
         <div className="h-4 w-px bg-gray-300 mx-2" />
       </div>
 
-      <div className="flex flex-wrap items-center space-x-2">
-        <button className="flex items-center gap-1 px-2 py-1.5 text-sm font-medium hover:bg-gray-50 rounded-md">
+      <div className="flex lg:flex-wrap items-center space-x-2">
+        <button className="hidden lg:flex items-center gap-1 px-2 py-1.5 text-sm font-medium hover:bg-gray-50 rounded-md">
           <BarChart2 className="w-4 h-4" />
           Show chart
         </button>
 
-        <button className="flex items-center gap-1 px-2 py-1.5 text-sm font-medium hover:bg-gray-50 rounded-md">
+        <button className="hidden lg:flex items-center gap-1 px-2 py-1.5 text-sm font-medium hover:bg-gray-50 rounded-md">
           <Layout className="w-4 h-4" />
           Focused view
         </button>
 
-        <button className="flex items-center gap-1 px-2 py-1.5 text-sm font-medium hover:bg-gray-50 rounded-md">
+        <button className="hidden lg:flex items-center gap-1 px-2 py-1.5 text-sm font-medium hover:bg-gray-50 rounded-md">
           <Plus className="w-4 h-4" />
           New
         </button>
 
-        <button className="flex items-center gap-1 px-2 py-1.5 text-sm font-medium hover:bg-gray-50 rounded-md">
+        <button className="hidden lg:flex items-center gap-1 px-2 py-1.5 text-sm font-medium hover:bg-gray-50 rounded-md">
           <RefreshCcw className="w-4 h-4" />
           Refresh
         </button>
 
-        <button className="flex items-center gap-1 px-2 py-1.5 text-sm font-medium hover:bg-gray-50 rounded-md">
+        <button className="hidden lg:flex items-center gap-1 px-2 py-1.5 text-sm font-medium hover:bg-gray-50 rounded-md">
           <BsMicrosoftTeams className='size-4 text-purple-800' />
           Collaborate
         </button>
 
-        <button className="flex items-center gap-1 px-2 py-1.5 text-sm font-medium hover:bg-gray-50 rounded-md">
+        <button className="hidden lg:flex items-center gap-1 px-2 py-1.5 text-sm font-medium hover:bg-gray-50 rounded-md">
           <Trash2 className="w-4 h-4" />
           Delete
         </button>
@@ -73,7 +73,7 @@ export default function SecondaryNav() {
 
         <div className="h-4 w-px bg-gray-300 mx-2" />
 
-        <button className="p-1.5 hover:bg-gray-50 rounded-md text-blue-600">
+        <button className="p-1.5 hover:bg-gray-50 rounded-md bg-blue-600 text-white">
           <Share className="w-4 h-4" />
         </button>
       </div>

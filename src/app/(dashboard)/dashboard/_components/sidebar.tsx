@@ -131,7 +131,7 @@ export default function Sidebar() {
   );
 
   return (
-    <div className="md:w-52 bg-gray-100 border-r border-r-gray-300 text-black flex flex-col">
+    <div className="md:w-52 bg-gray-100 border-r border-r-gray-300 text-black lg:flex hidden flex-col">
       <button
         className="md:hidden p-4"
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}

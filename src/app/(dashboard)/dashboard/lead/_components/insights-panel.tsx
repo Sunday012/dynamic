@@ -75,13 +75,15 @@ export default function InsightsPanel() {
 
   const scrollRight = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: 400, behavior: "smooth" });
+      const scrollAmount = window.innerWidth <= 640 ? 200 : 400;
+      carouselRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };
 
   const scrollLeft = () => {
     if (carouselRef.current) {
-      carouselRef.current.scrollBy({ left: -400, behavior: "smooth" });
+      const scrollAmount = window.innerWidth <= 640 ? -200 : -400;
+      carouselRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };
 
@@ -96,12 +98,12 @@ export default function InsightsPanel() {
     dealValue: "$1M",
     intent: "High" as const,
     about:
-      "Jane Reyes, the Chief Operating Officer of Northwind Traders, is a dynamic leader with a proven track record in optimizing operations and enhancing customer experiences. Under her guidance, Northwind Traders' in-store coffee shops have flourished, becoming a hallmark of quality and innovation. Jane's commitment to excellence makes her an ideal partner for First Coffee. She is always seeking top-tier equipment to elevate her coffee shops' offerings, ensuring consistent, high-quality service.",
+      "Jane Reyes, the Chief Operating Officer of Northwind Traders, is a dynamic leader with a proven track record in optimizing operations and enhancing customer experiences. Under her guidance, Northwind Traders' in-store coffee shops have flourished, becoming a hallmark of quality and innovation. Jane's commitment to excellence makes her an ideal partner for First Coffee. She's always seeking top-tier equipment to elevate her coffee shops' offerings.",
   };
 
   const target = 45000000;
-  const totalProgress = target * 0.68; // 68% of target
-  const totalPotential = target * 1.2; // 120% of target to show potential beyond
+  const totalProgress = target * 0.68;
+  const totalPotential = target * 1.2;
 
   const segments = [
     { label: "Won", value: 15000000, color: "bg-green-300" },
@@ -111,61 +113,60 @@ export default function InsightsPanel() {
     { label: "Leads 17%", value: 200000, color: "bg-gray-200" },
   ];
 
-  // Adjust segment values to total 68% of target
   const adjustedSegments = segments.map((segment) => ({
     ...segment,
     value: (segment.value / totalProgress) * (target * 0.68),
   }));
 
   return (
-    <div className="rounded-2xl border-[3px] mb-4 shadow-2xl border-indigo-500 bg-white overflow-hidden">
-      <div className="p-4 md:p-6 space-y-4 md:space-y-6">
+    <div className="rounded-lg sm:rounded-2xl border-2 sm:border-[3px] border-indigo-500 bg-white overflow-hidden shadow-lg sm:shadow-2xl">
+      <div className="p-3 sm:p-4 md:p-6 space-y-3 sm:space-y-4 md:space-y-6">
         {/* Header */}
-        <div className="flex flex-col md:flex-row items-start gap-4 md:items-center justify-between">
-          <div className="flex items-center gap-3 w-full md:w-auto">
-            <div className="flex-shrink-0">
+        <div className="flex flex-col space-y-3 sm:space-y-4">
+          <div className="flex items-start justify-between gap-2">
+            <div className="flex items-start gap-2 sm:gap-3">
               <img
                 src="/images/copilot-color.svg"
-                alt="image"
-                className="w-6 h-6"
+                alt="Copilot"
+                className="w-5 h-5 sm:w-6 sm:h-6 mt-1"
               />
-            </div>
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-4">
-              <h2 className="text-lg font-bold">
+              <h2 className="text-base sm:text-lg font-bold pr-6">
                 Hi Mona, <span className="text-blue-600">68%</span> of goal
                 achieved and rest can be achieved by focusing on 20 top leads
               </h2>
-              <ProgressBar
-                target={target}
-                segments={adjustedSegments}
-                totalPotential={totalPotential}
-              />
             </div>
             <button
               onClick={() => setIsExpanded(!isExpanded)}
-              className="p-1 hover:bg-gray-50 rounded"
+              className="p-1 hover:bg-gray-50 rounded flex-shrink-0"
             >
               {isExpanded ? (
-                <ChevronUp className="w-5 h-5" />
+                <ChevronUp className="w-4 h-4 sm:w-5 sm:h-5" />
               ) : (
-                <ChevronDown className="w-5 h-5" />
+                <ChevronDown className="w-4 h-4 sm:w-5 sm:h-5" />
               )}
             </button>
+          </div>
+          <div className="w-full">
+            <ProgressBar
+              target={target}
+              segments={adjustedSegments}
+              totalPotential={totalPotential}
+            />
           </div>
         </div>
 
         {isExpanded && (
-          <>
-            <div className="flex flex-col xl:flex-row w-full">
-              {/* Lead Cards Carousel */}
-              <div className="relative px-2 md:px-6 py-4 w-full xl:w-[60%]">
-                <p className="text-gray-600 px-2 md:px-6">
-                  Copilot has pinpointed 20 key leads that show strong purchase
-                  intent and are actively engaging. These leads need your focus.
-                </p>
+          <div className="flex flex-col xl:flex-row gap-4 sm:gap-6">
+            {/* Lead Cards Section */}
+            <div className="w-full xl:w-[60%] space-y-3 sm:space-y-4">
+              <p className="text-sm sm:text-base text-gray-600 px-2">
+                Copilot has pinpointed 20 key leads that show strong purchase
+                intent and are actively engaging. These leads need your focus.
+              </p>
+              <div className="relative">
                 <div
                   ref={carouselRef}
-                  className="flex gap-4 md:gap-6 overflow-x-auto no-scrollbar scroll-smooth"
+                  className="flex gap-3 sm:gap-4 overflow-x-auto no-scrollbar scroll-smooth px-2"
                 >
                   {leads.map((lead, index) => (
                     <LeadCard
@@ -175,39 +176,36 @@ export default function InsightsPanel() {
                     />
                   ))}
                 </div>
-
-                {/* Carousel Navigation */}
                 <button
                   onClick={scrollLeft}
-                  className="absolute left-0 md:left-2 top-1/2 -translate-y-1/2 p-1 rounded-full bg-white shadow-lg hover:bg-gray-50"
+                  className="absolute left-0 top-1/2 -translate-y-1/2 p-1 rounded-full bg-white shadow-lg hover:bg-gray-50"
                 >
-                  <ChevronRight className="w-5 h-5 rotate-180" />
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 rotate-180" />
                 </button>
                 <button
                   onClick={scrollRight}
-                  className="absolute right-0 md:right-2 top-1/2 -translate-y-1/2 p-1 rounded-full bg-white shadow-lg hover:bg-gray-50"
+                  className="absolute right-0 top-1/2 -translate-y-1/2 p-1 rounded-full bg-white shadow-lg hover:bg-gray-50"
                 >
-                  <ChevronRight className="w-5 h-5" />
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               </div>
+            </div>
 
-              {/* Activities Section */}
-              <div className="px-2 md:px-6 w-full xl:w-[40%]">
-                <p className="text-gray-600 px-2 md:px-6">
-                  Other key activities
-                </p>
-                <ul className="space-y-4">
-                  {activities.map((activity, index) => (
-                    <ActivityCard key={index} activity={activity} />
-                  ))}
-                </ul>
+            {/* Activities Section */}
+            <div className="w-full xl:w-[40%] space-y-3 sm:space-y-4">
+              <p className="text-sm sm:text-base text-gray-600 px-2">
+                Other key activities
+              </p>
+              <div className="space-y-3 sm:space-y-4 px-2">
+                {activities.map((activity, index) => (
+                  <ActivityCard key={index} activity={activity} />
+                ))}
               </div>
             </div>
-          </>
+          </div>
         )}
       </div>
 
-      {/* Lead Modal */}
       <LeadModal
         isOpen={selectedLead !== null}
         onClose={() => setSelectedLead(null)}

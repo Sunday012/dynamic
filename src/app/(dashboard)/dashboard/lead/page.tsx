@@ -5,7 +5,6 @@ import SecondaryNav from "../_components/secondary-nav";
 import InsightsPanel from "./_components/insights-panel";
 import LeadsTable from "./_components/lead-table";
 
-
 const mockLeads = [
   {
     id: "1",
@@ -105,16 +104,20 @@ export default function LeadPage() {
       <div className="p-6 overflow-auto no-scrollbar">
         <InsightsPanel />
 
-              <div className="relative flex-1 max-w-lg mb-6 border-[3px] shadow-lg rounded-lg border-indigo-500">
-                <input
-                  type="text"
-                  placeholder="Sort, filter and search with Copilot"
-                  className="w-full px-4 py-2 rounded-lg outline-none border-none"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-                <img src="/images/copilot-color.svg" alt="" className="absolute right-3 top-2.5 w-5 h-5" />
-              </div>
+        <div className="relative flex-1 max-w-lg my-6 border-2 shadow-lg rounded-lg border-indigo-500">
+          <input
+            type="text"
+            placeholder="Sort, filter and search with Copilot"
+            className="w-full px-4 py-2 rounded-lg outline-none border-none"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <img
+            src="/images/copilot-color.svg"
+            alt=""
+            className="absolute right-3 top-2.5 w-5 h-5"
+          />
+        </div>
 
         <LeadsTable
           leads={filteredLeads}

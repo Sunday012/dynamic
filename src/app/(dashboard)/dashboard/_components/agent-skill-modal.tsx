@@ -52,7 +52,7 @@ export default function AgentSkillModal({ onClose }: AgentSkillModalProps) {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-        <div className="w-full max-w-3xl py-8 px-4 bg-white rounded-lg border border-gray-200 shadow-sm">
+        <div className="w-full max-w-4xl py-8 px-4 bg-white rounded-2xl border border-gray-200 shadow-sm">
           <div className='w-full flex items-end justify-end '>
             <X className="text-black hover:text-gray-600 cursor-pointer size-8 p-2 hover:bg-gray-100 rounded-full transition-colors" onClick={onClose} />
           </div>
@@ -62,7 +62,7 @@ export default function AgentSkillModal({ onClose }: AgentSkillModalProps) {
           <div className="flex items-start justify-between">
             <div className="flex items-center gap-2">
               <img src="/images/copilot-color.svg" alt="copilot" />
-              <h3 className="text-lg font-semibold">Agent skill</h3>
+              <h3 className="text-xl font-semibold">Agent skill</h3>
             </div>
             <button
               className="p-2 hover:bg-gray-100 rounded-full transition-colors"
@@ -75,15 +75,15 @@ export default function AgentSkillModal({ onClose }: AgentSkillModalProps) {
           </div>
 
           <div className="text-sm space-y-3 shadow-md rounded-xl p-3">
-            <p>Check if on-hand inventory will allow all sales orders to ship without delay</p>
-            <p className="space-x-1">
+            <p className='text-lg font-semibold'>Check if on-hand inventory will allow all sales orders to ship without delay</p>
+            <p className="space-x-1 text-lg">
               <span>When</span>
               <HighlightedTerm type="default">any vendor</HighlightedTerm>
               <span>sends an email with changes to</span>
               <HighlightedTerm type="default">confirmed purchase orders</HighlightedTerm>
               <span>, check if the resulting</span>
             </p>
-            <p className="space-x-1">
+            <p className="space-x-1 text-lg">
               <HighlightedTerm type="default">on-hand inventory</HighlightedTerm>
               <span>will allow</span>
               <HighlightedTerm type="default">all sales orders</HighlightedTerm>
@@ -102,9 +102,9 @@ export default function AgentSkillModal({ onClose }: AgentSkillModalProps) {
         <div className="space-y-4">
           <div className="flex items-center gap-2">
           <PiMicrosoftOutlookLogoFill className='size-6 text-blue-400' />
-            <h3 className="text-lg font-semibold">Enable email access</h3>
+            <h3 className="text-xl font-semibold">Enable email access</h3>
           </div>
-          <p className="text-sm text-gray-600">
+          <p className="text-lg font-medium text-gray-600">
             Allow the agent to access email inboxes to read mail from known vendors
           </p>
 
