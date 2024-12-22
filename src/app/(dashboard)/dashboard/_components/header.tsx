@@ -12,13 +12,13 @@ export default function Header() {
       </div>
       
       <div className="flex items-center space-x-2">
-        <button className="p-1 hover:bg-white/10 rounded">
+        <button className="hidden lg:flex p-1 hover:bg-white/10 rounded">
           <Lightbulb className="w-5 h-5" />
         </button>
-        <button className="p-1 hover:bg-white/10 rounded">
+        <button className="hidden lg:flex p-1 hover:bg-white/10 rounded">
           <Plus className="w-5 h-5" />
         </button>
-        <button className="p-1 hover:bg-white/10 rounded">
+        <button className="hidden lg:flex p-1 hover:bg-white/10 rounded">
           <Settings className="w-5 h-5" />
         </button>
         <button className="p-1 hover:bg-white/10 rounded">

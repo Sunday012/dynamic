@@ -1,60 +1,61 @@
-'use client'
+"use client";
 
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from "react";
 
 interface ProgressSegment {
-  label: string
-  value: number
-  color: string
+  label: string;
+  value: number;
+  color: string;
 }
 
 interface ProgressBarProps {
-  target: number
-  segments: ProgressSegment[]
-  totalPotential: number
+  target: number;
+  segments: ProgressSegment[];
+  totalPotential: number;
 }
 
-export default function ProgressBar({ target, segments = [], totalPotential }: ProgressBarProps) {
-  const [barWidth, setBarWidth] = useState(0)
-  const barRef = useRef<HTMLDivElement>(null)
-  const totalValue = segments.reduce((sum, segment) => sum + segment.value, 0)
-  const percentage = (totalValue / target) * 100
+export default function ProgressBar({
+  target,
+  segments = [],
+  totalPotential,
+}: ProgressBarProps) {
+  const [barWidth, setBarWidth] = useState(0);
+  const barRef = useRef<HTMLDivElement>(null);
+  const totalValue = segments.reduce((sum, segment) => sum + segment.value, 0);
+  const percentage = (totalValue / target) * 100;
 
   useEffect(() => {
     if (barRef.current) {
-      setBarWidth(barRef.current.offsetWidth)
+      setBarWidth(barRef.current.offsetWidth);
     }
-  }, [])
+  }, []);
 
   // Format number as currency
   const formatCurrency = (value: number) => {
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      notation: 'compact',
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      notation: "compact",
       maximumFractionDigits: 1,
-    }).format(value)
-  }
+    }).format(value);
+  };
 
   const getSegmentWidth = (value: number) => {
-    return (value / totalPotential) * 100
-  }
+    return (value / totalPotential) * 100;
+  };
 
   const getTargetPosition = () => {
-    return (target / totalPotential) * 100
-  }
+    return (target / totalPotential) * 100;
+  };
 
   return (
     <div className="w-full mt-5">
       <div className="">
-        {/* Progress Bar Container */}
         <div className="relative h-2 w-full" ref={barRef}>
-          {/* Background (gray for entire bar) */}
           <div className="absolute inset-0 bg-gray-200 rounded-full" />
-          
-          {/* Target Line */}
-          <div 
-            className="absolute top-1/2 -translate-y-1/2" 
+
+          <div
+            className="absolute top-1/2 -translate-y-1/2"
             style={{ left: `${getTargetPosition()}%` }}
           >
             <div className="relative">
@@ -66,7 +67,6 @@ export default function ProgressBar({ target, segments = [], totalPotential }: P
             </div>
           </div>
 
-          {/* Progress Segments */}
           <div className="absolute inset-0 flex rounded-full overflow-hidden">
             {segments.map((segment, index) => (
               <div
@@ -77,7 +77,6 @@ export default function ProgressBar({ target, segments = [], totalPotential }: P
             ))}
           </div>
 
-          {/* Percentage Label */}
           {/* <div 
             className="absolute -top-6 text-xs font-medium whitespace-nowrap"
             style={{ left: '100%', transform: 'translateX(-100%)' }}
@@ -86,18 +85,18 @@ export default function ProgressBar({ target, segments = [], totalPotential }: P
           </div> */}
         </div>
 
-        {/* Segments Legend */}
         <div className="flex flex-wrap gap-4 text-xs pt-4">
           {segments.map((segment, index) => (
             <div key={index} className="flex items-center gap-2">
               <div className={`w-3 h-3 rounded-full ${segment.color}`} />
               <span>{segment.label}</span>
-              <span className="font-medium">{formatCurrency(segment.value)}</span>
+              <span className="font-medium">
+                {formatCurrency(segment.value)}
+              </span>
             </div>
           ))}
         </div>
       </div>
     </div>
-  )
+  );
 }
-

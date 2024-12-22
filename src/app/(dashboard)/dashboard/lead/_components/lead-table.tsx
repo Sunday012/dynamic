@@ -1,58 +1,65 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { ChevronDown, ChevronUp } from 'lucide-react'
+import { useState } from "react";
+import { ChevronDown, ChevronUp } from "lucide-react";
 
 interface Lead {
-  id: string
-  name: string
-  topic: string
-  statusReason: string
-  createdOn: string
+  id: string;
+  name: string;
+  topic: string;
+  statusReason: string;
+  createdOn: string;
 }
 
 interface LeadsTableProps {
-  leads: Lead[]
-  onLeadSelect: (leadId: string) => void
-  selectedLeads: string[]
+  leads: Lead[];
+  onLeadSelect: (leadId: string) => void;
+  selectedLeads: string[];
 }
 
-export default function LeadsTable({ leads, onLeadSelect, selectedLeads }: LeadsTableProps) {
+export default function LeadsTable({
+  leads,
+  onLeadSelect,
+  selectedLeads,
+}: LeadsTableProps) {
   const [sortConfig, setSortConfig] = useState<{
-    key: keyof Lead
-    direction: 'asc' | 'desc'
-  }>({ key: 'createdOn', direction: 'desc' })
+    key: keyof Lead;
+    direction: "asc" | "desc";
+  }>({ key: "createdOn", direction: "desc" });
 
   const sortedLeads = [...leads].sort((a, b) => {
-    if (sortConfig.direction === 'asc') {
-      return a[sortConfig.key] > b[sortConfig.key] ? 1 : -1
+    if (sortConfig.direction === "asc") {
+      return a[sortConfig.key] > b[sortConfig.key] ? 1 : -1;
     }
-    return a[sortConfig.key] < b[sortConfig.key] ? 1 : -1
-  })
+    return a[sortConfig.key] < b[sortConfig.key] ? 1 : -1;
+  });
 
   const requestSort = (key: keyof Lead) => {
-    setSortConfig(current => ({
+    setSortConfig((current) => ({
       key,
-      direction: current.key === key && current.direction === 'asc' ? 'desc' : 'asc',
-    }))
-  }
+      direction:
+        current.key === key && current.direction === "asc" ? "desc" : "asc",
+    }));
+  };
 
   const SortIcon = ({ columnKey }: { columnKey: keyof Lead }) => {
     if (sortConfig.key !== columnKey) {
-      return <ChevronDown className="w-4 h-4 text-gray-400" />
+      return <ChevronDown className="w-4 h-4 text-gray-400" />;
     }
-    return sortConfig.direction === 'asc' 
-      ? <ChevronUp className="w-4 h-4 text-blue-600" />
-      : <ChevronDown className="w-4 h-4 text-blue-600" />
-  }
+    return sortConfig.direction === "asc" ? (
+      <ChevronUp className="w-4 h-4 text-blue-600" />
+    ) : (
+      <ChevronDown className="w-4 h-4 text-blue-600" />
+    );
+  };
 
   // Column definitions
   const columns = [
-    { key: 'name', label: 'Name' },
-    { key: 'topic', label: 'Topic' },
-    { key: 'statusReason', label: 'Status reason' },
-    { key: 'createdOn', label: 'Created on' },
-  ]
+    { key: "name", label: "Name" },
+    { key: "topic", label: "Topic" },
+    { key: "statusReason", label: "Status reason" },
+    { key: "createdOn", label: "Created on" },
+  ];
 
   return (
     <div className="w-full bg-white rounded-lg border border-gray-200">
@@ -68,9 +75,9 @@ export default function LeadsTable({ leads, onLeadSelect, selectedLeads }: Leads
                   checked={selectedLeads.length === leads.length}
                   onChange={(e) => {
                     if (e.target.checked) {
-                      onLeadSelect('all')
+                      onLeadSelect("all");
                     } else {
-                      onLeadSelect('none')
+                      onLeadSelect("none");
                     }
                   }}
                 />
@@ -102,8 +109,8 @@ export default function LeadsTable({ leads, onLeadSelect, selectedLeads }: Leads
                     className="w-4 h-4 rounded border-gray-300"
                     checked={selectedLeads.includes(lead.id)}
                     onChange={(e) => {
-                      e.stopPropagation()
-                      onLeadSelect(lead.id)
+                      e.stopPropagation();
+                      onLeadSelect(lead.id);
                     }}
                   />
                 </td>
@@ -134,9 +141,9 @@ export default function LeadsTable({ leads, onLeadSelect, selectedLeads }: Leads
             checked={selectedLeads.length === leads.length}
             onChange={(e) => {
               if (e.target.checked) {
-                onLeadSelect('all')
+                onLeadSelect("all");
               } else {
-                onLeadSelect('none')
+                onLeadSelect("none");
               }
             }}
           />
@@ -155,8 +162,8 @@ export default function LeadsTable({ leads, onLeadSelect, selectedLeads }: Leads
                   className="w-4 h-4 rounded border-gray-300 mt-1"
                   checked={selectedLeads.includes(lead.id)}
                   onChange={(e) => {
-                    e.stopPropagation()
-                    onLeadSelect(lead.id)
+                    e.stopPropagation();
+                    onLeadSelect(lead.id);
                   }}
                 />
                 <div className="flex-1 min-w-0">
@@ -184,5 +191,5 @@ export default function LeadsTable({ leads, onLeadSelect, selectedLeads }: Leads
         </div>
       </div>
     </div>
-  )
+  );
 }

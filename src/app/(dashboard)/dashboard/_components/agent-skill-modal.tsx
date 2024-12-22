@@ -1,5 +1,5 @@
-import { useState, ReactNode } from 'react';
-import { ChevronDown, X, Check } from 'lucide-react';
+import { useState, ReactNode } from "react";
+import { ChevronDown, X, Check } from "lucide-react";
 import { PiMicrosoftOutlookLogoFill } from "react-icons/pi";
 
 interface AgentSkillModalProps {
@@ -8,21 +8,22 @@ interface AgentSkillModalProps {
 
 interface HighlightedTermProps {
   children: ReactNode;
-  type: 'vendor' | 'orders' | 'inventory' | 'default';
+  type: "vendor" | "orders" | "inventory" | "default";
 }
 
 export default function AgentSkillModal({ onClose }: AgentSkillModalProps) {
   const [isSkillExpanded, setIsSkillExpanded] = useState<boolean>(true);
   const [selectedEmails, setSelectedEmails] = useState<string[]>([]);
-  const [isEmailDropdownOpen, setIsEmailDropdownOpen] = useState<boolean>(false);
+  const [isEmailDropdownOpen, setIsEmailDropdownOpen] =
+    useState<boolean>(false);
 
   // Mock available emails
   const availableEmails: string[] = [
-    'purchasing@contoso.com',
-    'sales@contoso.com',
-    'support@contoso.com',
-    'logistics@contoso.com',
-    'accounts@contoso.com',
+    "purchasing@contoso.com",
+    "sales@contoso.com",
+    "support@contoso.com",
+    "logistics@contoso.com",
+    "accounts@contoso.com",
   ];
 
   const toggleEmail = (email: string): void => {
@@ -34,17 +35,21 @@ export default function AgentSkillModal({ onClose }: AgentSkillModalProps) {
   };
 
   const removeEmail = (emailToRemove: string): void => {
-    setSelectedEmails(selectedEmails.filter((email) => email !== emailToRemove));
+    setSelectedEmails(
+      selectedEmails.filter((email) => email !== emailToRemove)
+    );
   };
 
   const HighlightedTerm = ({ children, type }: HighlightedTermProps) => {
-    const baseClasses = 'px-1.5 py-1 rounded-xl text-sm font-medium';
+    const baseClasses = "px-1.5 py-1 rounded-xl text-sm font-medium";
     const typeColors: Record<string, string> = {
-      default: 'bg-blue-50 text-blue-600',
+      default: "bg-blue-50 text-blue-600",
     };
 
     return (
-      <span className={`${baseClasses} ${typeColors[type] || typeColors.default}`}>
+      <span
+        className={`${baseClasses} ${typeColors[type] || typeColors.default}`}
+      >
         {children}
       </span>
     );
@@ -53,11 +58,13 @@ export default function AgentSkillModal({ onClose }: AgentSkillModalProps) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
       <div className="w-full max-w-4xl py-8 px-4 bg-white rounded-2xl border border-gray-200 shadow-sm">
-        <div className='w-full flex items-end justify-end '>
-          <X className="text-black hover:text-gray-600 cursor-pointer size-8 p-2 hover:bg-gray-100 rounded-full transition-colors" onClick={onClose} />
+        <div className="w-full flex items-end justify-end ">
+          <X
+            className="text-black hover:text-gray-600 cursor-pointer size-8 p-2 hover:bg-gray-100 rounded-full transition-colors"
+            onClick={onClose}
+          />
         </div>
         <div className="p-6 space-y-6">
-          {/* Agent Skill Section */}
           <div className="space-y-4">
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-2">
@@ -69,32 +76,49 @@ export default function AgentSkillModal({ onClose }: AgentSkillModalProps) {
                 onClick={() => setIsSkillExpanded(!isSkillExpanded)}
                 aria-expanded={isSkillExpanded}
               >
-                <ChevronDown className={`h-4 w-4 transition-transform ${isSkillExpanded ? 'rotate-180' : ''}`} />
+                <ChevronDown
+                  className={`h-4 w-4 transition-transform ${
+                    isSkillExpanded ? "rotate-180" : ""
+                  }`}
+                />
                 <span className="sr-only">Toggle skill details</span>
               </button>
             </div>
 
             <div className="text-sm space-y-3 shadow-md rounded-xl p-3">
-              <p className='text-lg font-semibold'>Check if on-hand inventory will allow all sales orders to ship without delay</p>
+              <p className="text-lg font-semibold">
+                Check if on-hand inventory will allow all sales orders to ship
+                without delay
+              </p>
               {isSkillExpanded && (
                 <>
                   <p className="space-x-1 text-lg">
                     <span>When</span>
                     <HighlightedTerm type="default">any vendor</HighlightedTerm>
                     <span>sends an email with changes to</span>
-                    <HighlightedTerm type="default">confirmed purchase orders</HighlightedTerm>
+                    <HighlightedTerm type="default">
+                      confirmed purchase orders
+                    </HighlightedTerm>
                     <span>, check if the resulting</span>
                   </p>
                   <p className="space-x-1 text-lg">
-                    <HighlightedTerm type="default">on-hand inventory</HighlightedTerm>
+                    <HighlightedTerm type="default">
+                      on-hand inventory
+                    </HighlightedTerm>
                     <span>will allow</span>
-                    <HighlightedTerm type="default">all sales orders</HighlightedTerm>
+                    <HighlightedTerm type="default">
+                      all sales orders
+                    </HighlightedTerm>
                     <span>to</span>
-                    <HighlightedTerm type="default">ship without delay</HighlightedTerm>
+                    <HighlightedTerm type="default">
+                      ship without delay
+                    </HighlightedTerm>
                     <span>. If so,</span>
                   </p>
                   <p>
-                    <HighlightedTerm type="default">update the purchase order</HighlightedTerm>
+                    <HighlightedTerm type="default">
+                      update the purchase order
+                    </HighlightedTerm>
                     <span> to reflect the change.</span>
                   </p>
                 </>
@@ -102,20 +126,18 @@ export default function AgentSkillModal({ onClose }: AgentSkillModalProps) {
             </div>
           </div>
 
-          {/* Email Access Section */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <PiMicrosoftOutlookLogoFill className='size-6 text-blue-400' />
+              <PiMicrosoftOutlookLogoFill className="size-6 text-blue-400" />
               <h3 className="text-xl font-semibold">Enable email access</h3>
             </div>
             <p className="text-lg font-medium text-gray-600">
-              Allow the agent to access email inboxes to read mail from known vendors
+              Allow the agent to access email inboxes to read mail from known
+              vendors
             </p>
 
-            <div className='flex items-center gap-2 w-full'>
-              {/* Email Selection Area */}
+            <div className="flex items-center gap-2 w-full">
               <div className="relative w-full">
-                {/* Selected Emails Display */}
                 <div
                   className="min-h-10 p-2 border border-gray-300 rounded-lg flex flex-wrap gap-2"
                   onClick={() => setIsEmailDropdownOpen(!isEmailDropdownOpen)}
@@ -142,11 +164,12 @@ export default function AgentSkillModal({ onClose }: AgentSkillModalProps) {
                     </div>
                   ))}
                   {selectedEmails.length === 0 && (
-                    <span className="text-gray-400 text-sm">Select email addresses to grant access</span>
+                    <span className="text-gray-400 text-sm">
+                      Select email addresses to grant access
+                    </span>
                   )}
                 </div>
 
-                {/* Email Selection Dropdown */}
                 {isEmailDropdownOpen && (
                   <div className="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-lg shadow-lg">
                     {availableEmails.map((email, index) => (
@@ -173,7 +196,6 @@ export default function AgentSkillModal({ onClose }: AgentSkillModalProps) {
             </div>
           </div>
 
-          {/* Action Buttons */}
           <div className="flex justify-end gap-2 pt-4">
             <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
               Activate
@@ -190,4 +212,3 @@ export default function AgentSkillModal({ onClose }: AgentSkillModalProps) {
     </div>
   );
 }
-

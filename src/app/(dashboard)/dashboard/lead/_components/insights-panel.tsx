@@ -141,7 +141,6 @@ export default function InsightsPanel() {
       <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-purple-700 rounded-lg" />
       <div className="relative bg-white rounded-lg overflow-hidden shadow-lg sm:shadow-2xl">
         <div className="p-3 sm:p-4 md:p-6 space-y-3 sm:space-y-4 md:space-y-6">
-          {/* Header */}
           <div className="flex flex-col space-y-3 sm:space-y-4">
             <div className="flex items-start justify-between gap-2">
               <div className="flex items-start gap-2 sm:gap-3">
@@ -177,7 +176,6 @@ export default function InsightsPanel() {
 
           {isExpanded && (
             <div className="flex flex-col xl:flex-row gap-4 sm:gap-6">
-              {/* Lead Cards Section */}
               <div className="w-full xl:w-[60%] space-y-3 sm:space-y-4">
                 <p className="text-sm sm:text-base text-gray-600 px-2">
                   Copilot has pinpointed 20 key leads that show strong purchase
@@ -211,7 +209,6 @@ export default function InsightsPanel() {
                 </div>
               </div>
 
-              {/* Activities Section */}
               <div className="w-full xl:w-[40%] space-y-3 sm:space-y-4">
                 <p className="text-sm sm:text-base text-gray-600 px-2">
                   Other key activities

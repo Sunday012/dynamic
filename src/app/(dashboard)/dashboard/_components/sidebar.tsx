@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
   Home,
   Clock,
@@ -35,7 +36,11 @@ const mainNavItems = [
 ];
 
 const workItems = [
-  { name: "Sales accelerator", icon: Zap, path: "/dashboard/sales-accelerator" },
+  {
+    name: "Sales accelerator",
+    icon: Zap,
+    path: "/dashboard/sales-accelerator",
+  },
   { name: "Dashboards", icon: LayoutDashboard, path: "/dashboards" },
   { name: "Activities", icon: ClipboardList, path: "/dashboard/activities" },
 ];
@@ -56,7 +61,11 @@ const collateralItems = [
   { name: "Orders", icon: FileBox, path: "/dashboard/orders" },
   { name: "Invoices", icon: Receipt, path: "/dashboard/invoices" },
   { name: "Products", icon: Package, path: "/dashboard/products" },
-  { name: "Sales Literature", icon: BookOpen, path: "/dashboard/sales-literature" },
+  {
+    name: "Sales Literature",
+    icon: BookOpen,
+    path: "/dashboard/sales-literature",
+  },
 ];
 
 const marketingItems = [
@@ -73,7 +82,6 @@ type InsightsPanel = {
   icon: React.ElementType;
   path: string;
   hasSubmenu?: boolean;
-  isActive?: boolean;
 };
 
 type InsightsPanelData = {
@@ -82,6 +90,7 @@ type InsightsPanelData = {
 };
 
 export default function Sidebar() {
+  const pathname = usePathname();
   const [expandedSections, setExpandedSections] = useState<string[]>([
     "Recent",
     "Sales",
@@ -97,34 +106,40 @@ export default function Sidebar() {
     );
   };
 
-  const NavItem = ({ item, indent = false }: InsightsPanelData) => (
-    <Link
-      href={item.path}
-      className={`flex items-center px-4 py-2 text-sm truncate group ${
-        item.isActive ? "bg-white" : "hover:bg-white"
-      } ${indent ? "pl-8" : ""}`}
-    >
-      <item.icon className="w-4 h-4 mr-3" />
-      <span>{item.name}</span>
-      {item.hasSubmenu && (
-        <svg
-          className={`w-4 h-4 ml-auto transform transition-transform ${
-            expandedSections.includes(item.name) ? "rotate-180" : ""
-          }`}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M19 9l-7 7-7-7"
-          />
-        </svg>
-      )}
-    </Link>
-  );
+  const NavItem = ({ item, indent = false }: InsightsPanelData) => {
+    const isActive = pathname === item.path;
+
+    return (
+      <Link
+        href={item.path}
+        className={`flex items-center px-4 py-2 text-sm truncate group relative ${
+          isActive
+            ? "bg-white before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-gradient-to-b before:from-blue-400 before:to-purple-400"
+            : "hover:bg-white/60"
+        } ${indent ? "pl-8" : ""}`}
+      >
+        <item.icon className="w-4 h-4 mr-3" />
+        <span>{item.name}</span>
+        {item.hasSubmenu && (
+          <svg
+            className={`w-4 h-4 ml-auto transform transition-transform ${
+              expandedSections.includes(item.name) ? "rotate-180" : ""
+            }`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 9l-7 7-7-7"
+            />
+          </svg>
+        )}
+      </Link>
+    );
+  };
 
   const SectionTitle = ({ title }: { title: string }) => (
     <div className="px-4 py-2 text-xs font-medium uppercase">{title}</div>
@@ -138,7 +153,11 @@ export default function Sidebar() {
       >
         <ChevronsUpDown className="w-6 h-6" />
       </button>
-      <div className={`flex-1 overflow-y-auto no-scrollbar ${isSidebarOpen ? 'block' : 'hidden'} md:block`}>
+      <div
+        className={`flex-1 overflow-y-auto no-scrollbar ${
+          isSidebarOpen ? "block" : "hidden"
+        } md:block`}
+      >
         <nav className="space-y-1">
           {mainNavItems.map((item) => (
             <div key={item.name}>
@@ -178,7 +197,7 @@ export default function Sidebar() {
 
           <SectionTitle title="Agent Skill" />
           <button
-            className="flex items-center px-4 py-3 w-full text-sm group bg-gradient-to-r from-blue-300 to-purple-300 text-white hover:bg-white"
+            className="flex items-center px-4 py-3 w-full text-sm group bg-gradient-to-r from-blue-300 to-purple-300 text-white hover:bg-white hover:text-gray-900 transition-colors"
             onClick={() => setIsAgentSkillModalOpen(true)}
           >
             <UserCheck className="w-4 h-4 mr-3" />
@@ -187,7 +206,7 @@ export default function Sidebar() {
         </nav>
       </div>
 
-      {/* Fixed bottom section */}
+      {/* Fix bottom section */}
       <div className="border-t h-16 flex items-center p-2 justify-between w-full border-gray-200">
         <div className="flex items-center gap-2">
           <div className="bg-purple-500 text-white h-10 w-10 flex items-center justify-center rounded-md">
@@ -198,7 +217,6 @@ export default function Sidebar() {
         <ChevronsUpDown />
       </div>
 
-      {/* Agent Skill Modal */}
       {isAgentSkillModalOpen && (
         <AgentSkillModal onClose={() => setIsAgentSkillModalOpen(false)} />
       )}
