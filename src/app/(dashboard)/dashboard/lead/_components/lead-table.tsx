@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { ChevronDown, ChevronUp } from "lucide-react";
+import { ChevronDown, ChevronUp, DollarSign, UserCheck } from 'lucide-react';
+import LeadModal from "./lead-modal";
 
 interface Lead {
   id: string;
@@ -9,6 +10,14 @@ interface Lead {
   topic: string;
   statusReason: string;
   createdOn: string;
+  title: string;
+  company: string;
+  avatar: string;
+  suggestion: string;
+  decisionMaker: boolean;
+  dealValue: string;
+  intent: "High" | "Medium" | "Low";
+  about: string;
 }
 
 interface LeadsTableProps {
@@ -26,6 +35,8 @@ export default function LeadsTable({
     key: keyof Lead;
     direction: "asc" | "desc";
   }>({ key: "createdOn", direction: "desc" });
+
+  const [selectedLead, setSelectedLead] = useState<Lead | null>(null);
 
   const sortedLeads = [...leads].sort((a, b) => {
     if (sortConfig.direction === "asc") {
@@ -101,7 +112,7 @@ export default function LeadsTable({
               <tr
                 key={lead.id}
                 className="hover:bg-gray-50 cursor-pointer"
-                onClick={() => onLeadSelect(lead.id)}
+                onClick={() => setSelectedLead(lead)}
               >
                 <td className="w-8 p-4">
                   <input
@@ -115,7 +126,16 @@ export default function LeadsTable({
                   />
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                  {lead.name}
+                  <div className="group relative inline-block">
+                    <span className="cursor-help">{lead.name}</span>
+                    <div className="absolute z-10 invisible group-hover:visible bg-gray-800 text-white text-xs rounded py-1 px-2 -mt-12 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="flex items-center space-x-2">
+                        {lead.decisionMaker && <UserCheck className="w-4 h-4 text-green-500" />}
+                        <DollarSign className="w-4 h-4 text-yellow-500" />
+                        <span>${lead.dealValue.toLocaleString()}</span>
+                      </div>
+                    </div>
+                  </div>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                   {lead.topic}
@@ -154,7 +174,7 @@ export default function LeadsTable({
             <div
               key={lead.id}
               className="p-4 hover:bg-gray-50 cursor-pointer"
-              onClick={() => onLeadSelect(lead.id)}
+              onClick={() => setSelectedLead(lead)}
             >
               <div className="flex items-start space-x-3">
                 <input
@@ -167,8 +187,17 @@ export default function LeadsTable({
                   }}
                 />
                 <div className="flex-1 min-w-0">
-                  <div className="text-sm font-medium text-gray-900 mb-1">
-                    {lead.name}
+                  <div className="group relative inline-block">
+                    <div className="text-sm font-medium text-gray-900 mb-1 cursor-help">
+                      {lead.name}
+                    </div>
+                    <div className="absolute z-10 invisible group-hover:visible bg-gray-800 text-white text-xs rounded py-1 px-2 -mt-12 left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                      <div className="flex items-center space-x-2">
+                        {lead.decisionMaker && <UserCheck className="w-4 h-4 text-green-500" />}
+                        <DollarSign className="w-4 h-4 text-yellow-500" />
+                        <span>${lead.dealValue.toLocaleString()}</span>
+                      </div>
+                    </div>
                   </div>
                   <div className="grid gap-1 text-sm text-gray-500">
                     <div className="flex items-center">
@@ -190,6 +219,12 @@ export default function LeadsTable({
           ))}
         </div>
       </div>
+      <LeadModal
+        isOpen={selectedLead !== null}
+        onClose={() => setSelectedLead(null)}
+        lead={selectedLead}
+      />
     </div>
   );
 }
+

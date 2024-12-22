@@ -73,7 +73,7 @@ export default function SecondaryNav() {
 
         <div className="h-4 w-px bg-gray-300 mx-2" />
 
-        <button className="p-1.5 hover:bg-gray-50 rounded-md bg-blue-600 text-white">
+        <button className="p-1.5 hover:bg-blue-500 rounded-md bg-blue-600 text-white">
           <Share className="w-4 h-4" />
         </button>
       </div>
