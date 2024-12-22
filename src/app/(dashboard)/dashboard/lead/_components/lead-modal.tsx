@@ -19,12 +19,12 @@ interface LeadModalProps {
     title: string;
     company: string;
     avatar: string;
-    suggestion: string;
-    decisionMaker: boolean;
-    dealValue: string;
-    intent: "High" | "Medium" | "Low";
-    about: string;
-  };
+    suggestion?: string;
+    decisionMaker?: boolean;
+    dealValue?: string;
+    intent?: "High" | "Medium" | "Low";
+    about?: string;
+  } | null;
 }
 
 export default function LeadModal({ isOpen, onClose, lead }: LeadModalProps) {
@@ -36,7 +36,7 @@ export default function LeadModal({ isOpen, onClose, lead }: LeadModalProps) {
         className="fixed inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20"
         onClick={onClose}
       />
-      <div className="relative w-full max-w-5xl max-h-[90vh] overflow-auto no-scrollbar border-[3px]  border-indigo-500 bg-white rounded-2xl">
+      <div className="relative w-full max-w-5xl max-h-[90vh] overflow-auto no-scrollbar border-[3px] border-indigo-500 bg-white rounded-2xl">
         {/* Gradient border */}
         {/* <div className="absolute inset-0 rounded-lg p-[1px] bg-gradient-to-r from-blue-500 to-purple-500">
           <div className="absolute inset-0 bg-white rounded-lg" />
@@ -47,7 +47,7 @@ export default function LeadModal({ isOpen, onClose, lead }: LeadModalProps) {
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
               <img src="/images/bard.png" alt="bard" className="size-5" />
-              <h2 className="text-lg font-semibold">Engage with {lead.name}</h2>
+              <h2 className="text-lg font-semibold">Engage with {lead?.name}</h2>
             </div>
             <button
               onClick={onClose}
@@ -59,9 +59,9 @@ export default function LeadModal({ isOpen, onClose, lead }: LeadModalProps) {
 
           {/* Profile */}
           <div className="flex items-center bg-white rounded-2xl shadow-md border border-gray-200 p-3 gap-3 mb-6">
-            <img src={lead.avatar} alt="" className="w-12 h-12 rounded-full" />
+            <img src={lead?.avatar} alt="" className="w-12 h-12 rounded-full" />
             <div>
-              <h3 className="font-medium">{lead.name}</h3>
+              <h3 className="font-medium">{lead?.name}</h3>
               <div className="flex items-center gap-2">
                 <img
                   src="/images/linkedin.png"
@@ -69,7 +69,7 @@ export default function LeadModal({ isOpen, onClose, lead }: LeadModalProps) {
                   className="w-4 h-4"
                 />
                 <p className="text-sm text-gray-600">
-                  {lead.title} • {lead.company}
+                  {lead?.title} • {lead?.company}
                 </p>
               </div>
             </div>
@@ -80,7 +80,7 @@ export default function LeadModal({ isOpen, onClose, lead }: LeadModalProps) {
             <div className="bg-gradient-to-r from-blue-50 to-purple-50  flex items-center rounded-lg p-4 mb-6">
               <div className="flex items-center gap-2 text-blue-600 ">
                 <img src="/images/bard.png" alt="bard" className="size-5" />
-                <p className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-violet-500">{lead.suggestion}</p>
+                <p className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-violet-500">{lead?.suggestion}</p>
               </div>
               <div className="flex items-center gap-3">
                 <button className="text-sm flex items-center gap-2 bg-white px-4 py-2 text-gray-600 hover:text-gray-900">
@@ -139,7 +139,7 @@ export default function LeadModal({ isOpen, onClose, lead }: LeadModalProps) {
                     <span className="text-sm font-medium">
                       Potential deal value
                     </span>
-                  <p className="text-sm text-blue-600">{lead.dealValue}</p>
+                  <p className="text-sm text-blue-600">{lead?.dealValue}</p>
                     </div>
                   </div>
                 </div>
@@ -148,7 +148,7 @@ export default function LeadModal({ isOpen, onClose, lead }: LeadModalProps) {
                     <img src="/images/round-pie.svg" alt="pie" className="size-14" />
                     <div className="flex flex-col">
                     <span className="text-sm font-medium">Intent</span>
-                  <p className="text-sm text-blue-600">{lead.intent}</p>
+                  <p className="text-sm text-blue-600">{lead?.intent}</p>
                     </div>
                   </div>
                 </div>
@@ -158,8 +158,8 @@ export default function LeadModal({ isOpen, onClose, lead }: LeadModalProps) {
 
             {/* About */}
             <div className="mb-6 rounded-2xl border border-gray-200 bg-white p-3">
-              <h3 className="font-medium mb-2">About {lead.name}</h3>
-              <p className="text-sm text-gray-600">{lead.about}</p>
+              <h3 className="font-medium mb-2">About {lead?.name}</h3>
+              <p className="text-sm text-gray-600">{lead?.about}</p>
             </div>
           </div>
 

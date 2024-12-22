@@ -99,9 +99,9 @@ export default function LeadPage() {
   };
 
   return (
-    <main className="flex-1 flex flex-col bg-gray-50">
+    <main className="flex-1 flex flex-col overflow-auto bg-gray-50">
       <SecondaryNav />
-      <div className="p-6 overflow-auto no-scrollbar">
+      <div className="p-6">
         <InsightsPanel />
 
         <div className="relative flex-1 max-w-lg my-6 border-2 shadow-lg rounded-lg border-indigo-500">

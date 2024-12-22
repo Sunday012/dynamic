@@ -56,17 +56,17 @@ export default function SecondaryNav() {
           <MoreHorizontal className="w-4 h-4" />
         </button>
 
-        <button className="flex items-center gap-1 px-2 py-1.5 text-sm font-bold hover:bg-gray-50 rounded-md border border-gray-300">
+        <button className="hidden md:flex items-center gap-1 px-2 py-1.5 text-sm font-bold hover:bg-gray-50 rounded-md border border-gray-300">
           <Brain className="w-4 h-4" />
           Smart data
         </button>
 
-        <button className="flex items-center gap-1 px-2 py-1.5 text-sm font-bold hover:bg-gray-50 rounded-md border border-gray-300">
+        <button className="hidden md:flex items-center gap-1 px-2 py-1.5 text-sm font-bold hover:bg-gray-50 rounded-md border border-gray-300">
           <Filter className="w-4 h-4" />
           Edit filters
         </button>
 
-        <button className="flex items-center gap-1 px-2 py-1.5 text-sm font-bold hover:bg-gray-50 rounded-md border border-gray-300">
+        <button className="hidden md:flex items-center gap-1 px-2 py-1.5 text-sm font-bold hover:bg-gray-50 rounded-md border border-gray-300">
           <Columns className="w-4 h-4" />
           Edit columns
         </button>

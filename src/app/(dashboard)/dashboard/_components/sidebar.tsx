@@ -29,43 +29,43 @@ import {
 import AgentSkillModal from "./agent-skill-modal";
 
 const mainNavItems = [
-  { name: "Home", icon: Home, path: "/" },
-  { name: "Recent", icon: Clock, path: "/recent", hasSubmenu: true },
-  { name: "Pinned", icon: Pin, path: "/pinned", hasSubmenu: true },
+  { name: "Home", icon: Home, path: "/dashboard" },
+  { name: "Recent", icon: Clock, path: "/dashboard/recent", hasSubmenu: true },
+  { name: "Pinned", icon: Pin, path: "/dashboard/pinned", hasSubmenu: true },
 ];
 
 const workItems = [
-  { name: "Sales accelerator", icon: Zap, path: "/sales-accelerator" },
+  { name: "Sales accelerator", icon: Zap, path: "/dashboard/sales-accelerator" },
   { name: "Dashboards", icon: LayoutDashboard, path: "/dashboards" },
-  { name: "Activities", icon: ClipboardList, path: "/activities" },
+  { name: "Activities", icon: ClipboardList, path: "/dashboard/activities" },
 ];
 
 const customerItems = [
-  { name: "Accounts", icon: Building2, path: "/accounts" },
-  { name: "Contacts", icon: UserCircle, path: "/contacts" },
+  { name: "Accounts", icon: Building2, path: "/dashboard/accounts" },
+  { name: "Contacts", icon: UserCircle, path: "/dashboard/contacts" },
 ];
 
 const salesItems = [
   { name: "Leads", icon: Target, path: "/dashboard/lead" },
-  { name: "Opportunities", icon: FileText, path: "/opportunities" },
-  { name: "Competitors", icon: Users2, path: "/competitors" },
+  { name: "Opportunities", icon: FileText, path: "/dashboard/opportunities" },
+  { name: "Competitors", icon: Users2, path: "/dashboard/competitors" },
 ];
 
 const collateralItems = [
-  { name: "Quotes", icon: ShoppingCart, path: "/quotes" },
-  { name: "Orders", icon: FileBox, path: "/orders" },
-  { name: "Invoices", icon: Receipt, path: "/invoices" },
-  { name: "Products", icon: Package, path: "/products" },
-  { name: "Sales Literature", icon: BookOpen, path: "/sales-literature" },
+  { name: "Quotes", icon: ShoppingCart, path: "/dashboard/quotes" },
+  { name: "Orders", icon: FileBox, path: "/dashboard/orders" },
+  { name: "Invoices", icon: Receipt, path: "/dashboard/invoices" },
+  { name: "Products", icon: Package, path: "/dashboard/products" },
+  { name: "Sales Literature", icon: BookOpen, path: "/dashboard/sales-literature" },
 ];
 
 const marketingItems = [
-  { name: "Marketing lists", icon: Mail, path: "/marketing-lists" },
-  { name: "Quick Campaigns", icon: Send, path: "/quick-campaigns" },
+  { name: "Marketing lists", icon: Mail, path: "/dashboard/marketing-lists" },
+  { name: "Quick Campaigns", icon: Send, path: "/dashboard/quick-campaigns" },
 ];
 
 const performanceItems = [
-  { name: "Sales", icon: BarChart, path: "/sales" },
+  { name: "Sales", icon: BarChart, path: "/dashboard/sales" },
 ];
 
 type InsightsPanel = {
