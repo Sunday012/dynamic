@@ -99,7 +99,7 @@ export default function LeadPage() {
   };
 
   return (
-    <main className="flex-1 flex flex-col overflow-auto bg-gray-50">
+    <main className="flex-1 flex flex-col overflow-auto no-scrollbar bg-gray-50">
       <SecondaryNav />
       <div className="p-6">
         <InsightsPanel />

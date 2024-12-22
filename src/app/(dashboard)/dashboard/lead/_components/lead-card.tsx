@@ -19,7 +19,7 @@ interface Lead {
     return (
       <div 
         onClick={() => onClick(lead)}
-        className="min-w-[200px] md:min-w-[300px] h-[270px] xl:min-w-[400px] shadow-md rounded-2xl p-4 space-y-4 
+        className="min-w-[400px] shadow-md rounded-2xl p-4 space-y-4 
                    transition-all duration-200 hover:shadow-lg cursor-pointer border border-transparent 
                    hover:border-blue-100"
       >
