@@ -1,6 +1,7 @@
 import { useState, ReactNode } from "react";
 import { ChevronDown, X, Check } from "lucide-react";
 import { PiMicrosoftOutlookLogoFill } from "react-icons/pi";
+import Image from "next/image";
 
 interface AgentSkillModalProps {
   onClose: () => void;
@@ -68,7 +69,15 @@ export default function AgentSkillModal({ onClose }: AgentSkillModalProps) {
           <div className="space-y-4">
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-2">
-                <img src="/images/copilot-color.svg" alt="copilot" />
+                <div className="relative h-6 w-6">
+                  <Image
+                    src="/images/copilot-color.svg"
+                    alt="profile"
+                    className="object-cover rounded-full"
+                    fill
+                    sizes="28px"
+                  />
+                </div>
                 <h3 className="text-xl font-semibold">Agent skill</h3>
               </div>
               <button

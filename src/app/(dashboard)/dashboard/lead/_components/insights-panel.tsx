@@ -5,6 +5,7 @@ import { BookText, ChevronDown, ChevronRight, ChevronUp, Mail } from 'lucide-rea
 import LeadModal from "./lead-modal";
 import LeadCard, { ActivityCard } from "./lead-card";
 import ProgressBar from "./lead-progress-bar";
+import Image from "next/image";
 
 interface Activity {
   title: string;
@@ -144,10 +145,12 @@ export default function InsightsPanel() {
           <div className="flex flex-col space-y-3 sm:space-y-4">
             <div className="flex items-start justify-between gap-2">
               <div className="flex items-start gap-2 sm:gap-3">
-                <img
+                <Image
                   src="/images/copilot-color.svg"
                   alt="Copilot"
                   className="w-5 h-5 sm:w-6 sm:h-6 mt-1"
+                  width={5}
+                  height={5}
                 />
                 <h2 className="text-base sm:text-lg font-bold pr-6">
                   Hi Mona, <span className="text-blue-600">68%</span> of goal

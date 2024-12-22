@@ -4,6 +4,7 @@ import { useState } from "react";
 import SecondaryNav from "../_components/secondary-nav";
 import InsightsPanel from "./_components/insights-panel";
 import LeadsTable from "./_components/lead-table";
+import Image from "next/image";
 
 type Intent = "High" | "Medium" | "Low";
 
@@ -210,10 +211,12 @@ export default function LeadPage() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
           />
-          <img
+          <Image
             src="/images/copilot-color.svg"
             alt=""
             className="absolute right-3 top-2.5 w-5 h-5"
+            width={5}
+            height={5}
           />
         </div>
 

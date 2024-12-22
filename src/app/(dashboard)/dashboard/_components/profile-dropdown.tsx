@@ -1,6 +1,7 @@
 "use client"
 import { useState } from 'react';
 import { ChevronDown, User, LogOut, Settings } from 'lucide-react';
+import Image from 'next/image';
 
 export default function ProfileDropdown() {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,11 +12,15 @@ export default function ProfileDropdown() {
         onClick={() => setIsOpen(!isOpen)} 
         className="flex items-center gap-2 hover:bg-transparent p-1 rounded-lg transition-colors"
       >
-        <img 
-          src="/images/pic1.jpg" 
-          alt="profile" 
-          className="size-7 rounded-full object-cover border border-gray-200"
-        />
+        <div className="relative h-7 w-7">
+          <Image 
+            src="/images/pic1.jpg" 
+            alt="profile" 
+            className="object-cover rounded-full border border-gray-200"
+            fill
+            sizes="28px"
+          />
+        </div>
         <ChevronDown className={`w-4 h-4 text-gray-600 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 

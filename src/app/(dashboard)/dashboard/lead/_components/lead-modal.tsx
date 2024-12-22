@@ -10,6 +10,7 @@ import {
   Linkedin,
   SendHorizontal,
 } from "lucide-react";
+import Image from "next/image";
 
 interface LeadModalProps {
   isOpen: boolean;
@@ -30,7 +31,6 @@ interface LeadModalProps {
 export default function LeadModal({ isOpen, onClose, lead }: LeadModalProps) {
   if (!isOpen || !lead) return null;
 
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div
@@ -45,7 +45,15 @@ export default function LeadModal({ isOpen, onClose, lead }: LeadModalProps) {
         <div className="relative p-6">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
-              <img src="/images/bard.png" alt="bard" className="size-5" />
+              <div className="relative h-5 w-5">
+                <Image
+                  src="/images/bard.png"
+                  alt="bard"
+                  className="object-cover rounded-full"
+                  fill
+                  sizes="28px"
+                />
+              </div>
               <h2 className="text-lg font-semibold">
                 Engage with {lead?.name}
               </h2>
@@ -59,14 +67,24 @@ export default function LeadModal({ isOpen, onClose, lead }: LeadModalProps) {
           </div>
 
           <div className="flex items-center bg-white rounded-2xl shadow-md border border-gray-200 p-3 gap-3 mb-6">
-            <img src={lead?.avatar} alt="" className="w-12 h-12 rounded-full" />
+            <div className="relative h-12 w-12">
+              <Image
+                src={lead?.avatar}
+                alt="avatar_image"
+                className="object-cover rounded-full"
+                fill
+                sizes="28px"
+              />
+            </div>
             <div>
               <h3 className="font-medium">{lead?.name}</h3>
               <div className="flex items-center gap-2">
-                <img
+                <Image
                   src="/images/linkedin.png"
                   alt="linkedin"
                   className="w-4 h-4"
+                  width={4}
+                  height={4}
                 />
                 <p className="text-sm text-gray-600">
                   {lead?.title} • {lead?.company}
@@ -78,7 +96,13 @@ export default function LeadModal({ isOpen, onClose, lead }: LeadModalProps) {
           <div className="bg-gradient-to-br from-white via-white to-blue-50 shadow-sm p-4 rounded-lg">
             <div className="bg-gradient-to-r from-blue-50 to-purple-50 flex flex-col lg:flex-row items-center rounded-lg p-4 mb-6">
               <div className="flex items-center gap-2 text-blue-600 ">
-                <img src="/images/bard.png" alt="bard" className="size-5" />
+                <Image
+                  src="/images/bard.png"
+                  alt="bard"
+                  className="size-5"
+                  width={5}
+                  height={5}
+                />
                 <p className="bg-clip-text text-transparent bg-gradient-to-r from-blue-700 to-violet-500">
                   {lead?.suggestion}
                 </p>
@@ -102,7 +126,13 @@ export default function LeadModal({ isOpen, onClose, lead }: LeadModalProps) {
                     Why I picked this lead
                   </h3>
                   <button className="p-2 bg-white rounded-bl-2xl -mt-6 -mr-4">
-                    <img src="/images/bard.png" alt="bard" className="size-4" />
+                    <Image
+                      src="/images/bard.png"
+                      alt="bard"
+                      className="size-4"
+                      width={4}
+                      height={4}
+                    />
                   </button>
                 </div>
                 <ul className="space-y-2 mb-4 text-sm text-gray-600">
@@ -125,11 +155,14 @@ export default function LeadModal({ isOpen, onClose, lead }: LeadModalProps) {
                 <div className="flex flex-col lg:flex-row gap-4">
                   <div className="p-2 bg-white border w-full lg:w-[204px] rounded-2xl">
                     <div className="flex items-center gap-2">
-                      <img
-                        src="/images/mac-tick.png"
-                        alt="pie"
-                        className="size-14"
-                      />
+                      <div className="relative h-14 w-14">
+                        <Image
+                          src="/images/mac-tick.png"
+                          alt="pie"
+                          className="object-cover rounded-full"
+                          fill
+                        />
+                      </div>
                       <div className="flex flex-col">
                         <span className="text-sm font-medium">
                           Decision maker
@@ -155,10 +188,12 @@ export default function LeadModal({ isOpen, onClose, lead }: LeadModalProps) {
                   </div>
                   <div className="p-2 bg-white border w-full lg:w-[204px] rounded-2xl">
                     <div className="flex items-center gap-2">
-                      <img
+                      <Image
                         src="/images/round-pie.svg"
                         alt="pie"
                         className="size-14"
+                        width={14}
+                        height={14}
                       />
                       <div className="flex flex-col">
                         <span className="text-sm font-medium">Intent</span>
