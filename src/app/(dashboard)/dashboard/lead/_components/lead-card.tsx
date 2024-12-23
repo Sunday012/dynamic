@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import Image from "next/image";
 
 interface Lead {
@@ -10,6 +11,8 @@ interface Lead {
   tags?: string[];
   additionalInfo?: string;
   icon?: React.ReactElement;
+  dealValue?: string;
+  decisionMaker: boolean;
 }
 
 interface LeadCardProps {
@@ -18,13 +21,18 @@ interface LeadCardProps {
 }
 
 export default function LeadCard({ lead, onClick }: LeadCardProps) {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       onClick={() => onClick(lead)}
-      className="min-w-[500px] shadow-md rounded-2xl p-4 space-y-4 
-                   transition-all duration-200 hover:shadow-lg cursor-pointer border border-transparent 
-                   hover:border-blue-100"
+      className="relative min-w-[500px] shadow-md rounded-2xl p-4 space-y-4 
+                 transition-all duration-200 hover:shadow-lg cursor-pointer border border-transparent 
+                 hover:border-blue-100"
     >
+      {/* Existing card content */}
       <div className="flex items-center gap-3">
         <div className="relative h-10 w-10">
           <Image
@@ -43,6 +51,7 @@ export default function LeadCard({ lead, onClick }: LeadCardProps) {
           </p>
         </div>
       </div>
+      
       <div className="bg-slate-100 rounded-lg p-3">
         <div className="flex gap-2">
           {lead.icon}
@@ -55,9 +64,7 @@ export default function LeadCard({ lead, onClick }: LeadCardProps) {
         <div className="flex items-center gap-2 text-sm">
           {lead.tags.map((tag, index) => (
             <div key={index}>
-              <span
-                className={index % 2 === 0 ? "text-gray-600" : "text-blue-600"}
-              >
+              <span className={index % 2 === 0 ? "text-gray-600" : "text-blue-600"}>
                 {tag}
               </span>
               {index < lead.tags!.length - 1 && <span>•</span>}
@@ -68,6 +75,32 @@ export default function LeadCard({ lead, onClick }: LeadCardProps) {
 
       {lead.additionalInfo && (
         <p className="text-sm text-gray-500">{lead.additionalInfo}</p>
+      )}
+
+      {/* Hover Preview */}
+      {isHovered && (
+        <div className="absolute left-0 top-0 transform translate-x-full -translate-y-1/4 z-10">
+          <div className="bg-white rounded-lg shadow-lg p-4 w-64 border border-gray-200">
+            <div className="space-y-3">
+              {lead.dealValue && (
+                <div className="space-y-1">
+                  <p className="text-sm font-medium text-gray-500">Deal Value</p>
+                  <p className="text-lg font-semibold text-green-600">{lead.dealValue}</p>
+                </div>
+              )}
+              <div className="space-y-1">
+                <p className="text-sm font-medium text-gray-500">Decision Maker</p>
+                <span className={`px-2 py-1 rounded-full text-xs font-medium ${
+                  lead.decisionMaker 
+                    ? 'bg-green-100 text-green-800' 
+                    : 'bg-gray-100 text-gray-800'
+                }`}>
+                  {lead.decisionMaker ? 'Yes' : 'No'}
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
